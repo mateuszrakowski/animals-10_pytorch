@@ -41,7 +41,8 @@ df = prep_data.create_dataframe(targ_dir=data_path,
                                 samples_per_label=250)
 
 # Visualize the data distribution after creating dataframe subset
-# plot_labels(dataframe=df)
+fig = visualize.plot_labels(dataframe=df)
+plt.show()
 
 train_df, test_df = train_test_split(df, test_size=0.2, 
                                      random_state=SEED)
@@ -104,10 +105,11 @@ results = engine.evaluation_model(model=resnet18_model,
                                   device=device)
 
 # Plot confusion matrix with corresponding classes
-visualize.confusion_matrix(predictions=results["predictions"], 
+fig = visualize.confusion_matrix(predictions=results["predictions"], 
                            targets=results["targets"], 
                            num_classes=len(class_names),
                            class_names=class_names_idx.keys())
+plt.show()
 
 # Download custom image for prediction
 request = requests.get("https://images.unsplash.com/photo-1561948955-570b270e7c36?q=80&w=2101&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
@@ -158,3 +160,4 @@ for i in range(9):
     plt.imshow(img)
     plt.title(f"Predicted: {idx_to_class_name[img_data['predictions']]}\nActual: {img_data['label']}\nProbability: {img_data['probability']:.2f}")
     plt.axis("off")
+plt.show()

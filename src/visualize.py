@@ -16,7 +16,8 @@ def plot_labels(dataframe: pd.DataFrame):
     ax.bar(labels_dict.keys(), labels_dict.values(), edgecolor="white");
     ax.set_xlabel("Class names")
     ax.set_ylabel("Number of images")
-    ax.set_title("Number of images in each class");
+    ax.set_title("Number of images in each class")
+    return fig
 
     
 def plot_random_images(data_dir: str):
@@ -27,12 +28,13 @@ def plot_random_images(data_dir: str):
     random_imgs = random.sample(img_paths, 9)
 
     # Plot images in 3x3 matrix
-    plt.figure(figsize=(9, 9))
+    fig = plt.figure(figsize=(9, 9))
     for i in range(9):
         plt.subplot(3, 3, i+1)
         img = Image.open(random_imgs[i])
         plt.imshow(img)
         plt.axis("off")
+    return fig
 
         
 def confusion_matrix(predictions: list, targets: list, num_classes: int, class_names: list):
@@ -49,4 +51,4 @@ def confusion_matrix(predictions: list, targets: list, num_classes: int, class_n
     # Plot confusion matrix
     fig, ax = plot_confusion_matrix(conf_mat=confusion_matrix,
                                     class_names=class_names)
-    plt.show()
+    return fig

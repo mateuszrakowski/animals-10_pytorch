@@ -56,11 +56,11 @@ test_custom_dataset = prep_data.CustomDataset(dataframe=test_df,
 
 # Create Dataloaders
 train_custom_dataloader = DataLoader(dataset=train_custom_dataset, 
-                                     batch_size=32, 
+                                     batch_size=BATCH_SIZE, 
                                      shuffle=True)
 
 test_custom_dataloader = DataLoader(dataset=test_custom_dataset, 
-                                    batch_size=32, 
+                                    batch_size=BATCH_SIZE, 
                                     shuffle=False)
 
 # Create dictionary with class names and indexes
